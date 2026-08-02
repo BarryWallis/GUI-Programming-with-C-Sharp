@@ -2,5 +2,8 @@
   <Folder Name="/Chapter 01/">
     <Project Path="HelloWorld/HelloWorld.csproj" />
     <Project Path="HelloWorldBlazor/HelloWorldBlazor.csproj" Id="35bf9eb0-5ef2-4457-a679-753daec7bbe4" />
+    <Project Path="HelloWorldMAUI/HelloWorldMAUI.csproj" Id="ff3792bd-23a3-40bc-b767-ec3d835af95d">
+      <Deploy Solution="Debug|*" />
+    </Project>
   </Folder>
 </Solution>
