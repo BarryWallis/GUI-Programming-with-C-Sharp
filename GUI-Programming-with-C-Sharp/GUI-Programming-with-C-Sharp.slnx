@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Chapter 01/">
     <Project Path="HelloWorld/HelloWorld.csproj" />
+    <Project Path="HelloWorldBlazor/HelloWorldBlazor.csproj" Id="35bf9eb0-5ef2-4457-a679-753daec7bbe4" />
   </Folder>
 </Solution>
