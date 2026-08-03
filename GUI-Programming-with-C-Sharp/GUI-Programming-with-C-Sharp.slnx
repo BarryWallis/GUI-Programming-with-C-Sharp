@@ -6,4 +6,7 @@
       <Deploy Solution="Debug|*" />
     </Project>
   </Folder>
+  <Folder Name="/Chapter02/">
+    <Project Path="SampleCalculator/SampleCalculator.csproj" Id="fc041cba-74ac-4cf3-956f-d9851aadd8bb" />
+  </Folder>
 </Solution>
