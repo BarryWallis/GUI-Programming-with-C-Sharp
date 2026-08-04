@@ -9,4 +9,7 @@
   <Folder Name="/Chapter02/">
     <Project Path="SampleCalculator/SampleCalculator.csproj" Id="fc041cba-74ac-4cf3-956f-d9851aadd8bb" />
   </Folder>
+  <Folder Name="/Chapter03/">
+    <Project Path="FirstBlazorApp/FirstBlazorApp.csproj" Id="9f799fe2-79a8-4a1c-b1ce-c1f968bf3a00" />
+  </Folder>
 </Solution>

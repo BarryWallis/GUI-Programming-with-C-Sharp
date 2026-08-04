@@ -1,0 +1,23 @@
+﻿@page "/temperature"
+@using System.Text.Json
+@inject HttpClient Http
+
+<h3>Current Temperature</h3>
+<p>@temperature</p>
+
+@code {
+    private string? temperature;
+
+    protected override async Task OnInitializedAsync()
+    {
+        string json =
+            await Http.GetStringAsync("https://api.open-meteo.com/v1/forecast?latitude=36.1165654&longitude=-85.881655&current=temperature_2m&temperature_unit=fahrenheit");
+
+        using JsonDocument doc = JsonDocument.Parse(json);
+        double temp = doc.RootElement
+                         .GetProperty("current")
+                         .GetProperty("temperature_2m")
+                         .GetDouble();
+        temperature = temp.ToString();
+    }
+}
