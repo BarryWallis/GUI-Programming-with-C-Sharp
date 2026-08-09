@@ -1,5 +1,7 @@
 ﻿using ConsoleAppAdventureGame;
 
+using Spectre.Console;
+
 StoryNode floating = new("Floating")
 {
     Text = ["You spend the rest of your short life floating in space."],
@@ -55,6 +57,15 @@ StoryNode start = new("Start")
     ]
 };
 
-Adventure adventure = new([start, stranded, destroy, floating, suffocated]);
-SpectreConsoleAdventureRenderer renderer = new();
-adventure.Run(renderer);
+try
+{
+    Console.OutputEncoding = System.Text.Encoding.UTF8;
+    Adventure adventure = new([start, stranded, destroy, floating, suffocated]);
+    SpectreConsoleAdventureRenderer renderer = new();
+    adventure.Run(renderer);
+}
+catch (Exception ex)
+{
+    AnsiConsole.WriteException(ex, ExceptionFormats.ShortenEverything);
+    throw;
+}
