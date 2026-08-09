@@ -12,7 +12,7 @@ StoryNode suffocated = new("Suffocated")
 
 StoryNode stranded = new("Stranded")
 {
-    Text = ["It seems you failed to account for the Earth being at different points in its orbit over time."],
+    Text = ["It seems you failed to account for the [yellow italic]Earth being at different points in its orbit[/] over time."],
     Choices =
     [
         new Choice("Put on a space suit.")
@@ -29,7 +29,7 @@ StoryNode stranded = new("Stranded")
 };
 StoryNode destroy = new("Destroy")
 {
-    Text = ["The device collapses, compressing all of time and space along with it."]
+    Text = ["The device collapses, [cyan underline]compressing all of time and space[/] along with it."]
 };
 
 StoryNode start = new("Start")
@@ -44,17 +44,17 @@ StoryNode start = new("Start")
     [
         new Choice("Turn it on.")
         {
-            WhenChosen = ["You are now adrift in space without a spacesuit."],
+            WhenChosen = ["You are now [red bold]adrift in space spacesuit[/]."],
             NextNodeId = stranded.Id
         },
         new Choice("Destroy it!")
         {
-            WhenChosen = ["You smash it to pieces!"],
+            WhenChosen = ["You [bold yellow]smash it[/] to pieces!"],
             NextNodeId = destroy.Id,
         }
     ]
 };
 
 Adventure adventure = new([start, stranded, destroy, floating, suffocated]);
-ConsoleAdventureRenderer renderer = new();
+SpectreConsoleAdventureRenderer renderer = new();
 adventure.Run(renderer);

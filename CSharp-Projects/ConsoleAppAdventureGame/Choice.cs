@@ -13,9 +13,9 @@ public record Choice(string Text)
     /// </summary>
     /// <param name="adventure">The adventure instance whose current node should be updated.</param>
     /// <param name="renderer">The renderer used to display the choice action.</param>
-    public void Execute(Adventure adventure, ConsoleAdventureRenderer renderer)
+    public void Execute(Adventure adventure, SpectreConsoleAdventureRenderer _)
     {
-        ConsoleAdventureRenderer.RenderChoiceAction(this);
+        SpectreConsoleAdventureRenderer.RenderChoiceAction(this);
         adventure.CurrentNode = string.IsNullOrWhiteSpace(NextNodeId) ? null : adventure.GetNode(NextNodeId);
     }
 }

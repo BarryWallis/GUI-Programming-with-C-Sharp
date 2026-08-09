@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
+using Spectre.Console;
+
 namespace ConsoleAppAdventureGame;
 
 /// <summary>
@@ -36,18 +38,18 @@ public class Adventure
     /// Runs the adventure by rendering the current story node and processing user-selected choices until the story ends.
     /// </summary>
     /// <param name="renderer">The renderer used to display the adventure content.</param>
-    public void Run(ConsoleAdventureRenderer renderer)
+    public void Run(SpectreConsoleAdventureRenderer renderer)
     {
         while (CurrentNode is not null)
         {
-            ConsoleAdventureRenderer.Render(CurrentNode);
+            SpectreConsoleAdventureRenderer.Render(CurrentNode);
             if (CurrentNode.Choices.Length == 0)
             {
                 CurrentNode = null;
             }
             else
             {
-                Choice choice = ConsoleAdventureRenderer.GetChoice(CurrentNode);
+                Choice choice = SpectreConsoleAdventureRenderer.GetChoice(CurrentNode);
                 choice.Execute(this, renderer);
             }
         }
