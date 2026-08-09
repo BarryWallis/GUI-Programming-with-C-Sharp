@@ -12,4 +12,13 @@
   <Folder Name="/Chapter03/">
     <Project Path="FirstBlazorApp/FirstBlazorApp.csproj" Id="9f799fe2-79a8-4a1c-b1ce-c1f968bf3a00" />
   </Folder>
+  <Folder Name="/Chapter04/" />
+  <Folder Name="/Chapter05/">
+    <Project Path="Chapter5/Chapter5.csproj" Id="d75467f3-da81-4aa0-bcc6-198e151b949a">
+      <Deploy Solution="Debug|*" />
+    </Project>
+  </Folder>
+  <Folder Name="/Chapter06/">
+    <Project Path="Chapter6/Chapter6.csproj" Id="5681b259-5e81-44c7-b92a-777957754b36" />
+  </Folder>
 </Solution>

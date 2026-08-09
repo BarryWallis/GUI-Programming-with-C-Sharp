@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Windows Machine": {
+      "commandName": "Project",
+      "nativeDebugging": false,
+      "environmentVariables": {
+        "DOTNET_MODIFIABLE_ASSEMBLIES": "skip",
+        "DOTNET_STARTUP_HOOKS": ""
+      }
+    }
+  }
+}

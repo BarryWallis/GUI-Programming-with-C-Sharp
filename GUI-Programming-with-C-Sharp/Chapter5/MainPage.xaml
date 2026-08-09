@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chapter5.MainPage">
+    <!--<StackLayout>
+        <Label Text="Welcome to .NET MAUI!"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="CenterAndExpand" />
+    </StackLayout>-->
+    <StackLayout Orientation="Vertical">
+        <Grid>
+            <Label Text="Welcome to .NET MAUI!"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center" />
+        </Grid>
+        <Label Text="First Label" />
+        <Label Text="Second Label" />
+        <FlexLayout Direction="Row"
+                    JustifyContent="SpaceBetween">
+            <Label Text="Left" />
+            <Label Text="Center" />
+            <Label Text="Right" />
+        </FlexLayout>
+    </StackLayout>
+</ContentPage>
