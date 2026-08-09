@@ -1,10 +1,32 @@
 ﻿using ConsoleAppAdventureGame;
 
-StoryNode stranded = new("Stranded")
+StoryNode floating = new("Floating")
 {
-    Text = ["It seems you failed to account for the [yellow italic]Earth being at different points in its orbit over time."]
+    Text = ["You spend the rest of your short life floating in space."],
 };
 
+StoryNode suffocated = new("Suffocated")
+{
+    Text = ["You suffocate and die."],
+};
+
+StoryNode stranded = new("Stranded")
+{
+    Text = ["It seems you failed to account for the Earth being at different points in its orbit over time."],
+    Choices =
+    [
+        new Choice("Put on a space suit.")
+        {
+            WhenChosen = ["You put on a space suit and float in space."],
+            NextNodeId = floating.Id
+        },
+        new Choice("Float unencumbered")
+        {
+            WhenChosen = ["You float unencumbered in space."],
+            NextNodeId = suffocated.Id
+        }
+    ]
+};
 StoryNode destroy = new("Destroy")
 {
     Text = ["The device collapses, compressing all of time and space along with it."]
@@ -33,9 +55,6 @@ StoryNode start = new("Start")
     ]
 };
 
-Adventure adventure = new([start, stranded, destroy]);
-
-SimpleConsoleRenderer renderer = new();
-SimpleConsoleRenderer.Render(adventure.CurrentNode!);
-Choice choice = SimpleConsoleRenderer.GetChoice(adventure.CurrentNode!);
-SimpleConsoleRenderer.RenderChoiceAction(choice);
+Adventure adventure = new([start, stranded, destroy, floating, suffocated]);
+ConsoleAdventureRenderer renderer = new();
+adventure.Run(renderer);
