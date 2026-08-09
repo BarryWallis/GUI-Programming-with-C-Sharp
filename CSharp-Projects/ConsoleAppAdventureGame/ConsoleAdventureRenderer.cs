@@ -7,13 +7,13 @@ namespace ConsoleAppAdventureGame;
 /// <summary>
 /// Renders story content and choices to the console.
 /// </summary>
-public class ConsoleAdventureRenderer
+public class ConsoleAdventureRenderer : IAdventureRenderer
 {
     /// <summary>
     /// Displays the text associated with the specified story node to the console.
     /// </summary>
     /// <param name="node">The story node whose text should be rendered.</param>
-    public static void Render(StoryNode node)
+    public void Render(StoryNode node)
     {
         foreach (string line in node.Text)
         {
@@ -26,7 +26,7 @@ public class ConsoleAdventureRenderer
     /// </summary>
     /// <param name="node">The story node that contains the available choices.</param>
     /// <returns>The selected choice.</returns>
-    public static Choice GetChoice(StoryNode node)
+    public Choice GetChoice(StoryNode node)
     {
         Console.WriteLine("What do you want to do?");
         Console.WriteLine();
@@ -61,7 +61,7 @@ public class ConsoleAdventureRenderer
     /// Displays the outcome text associated with the specified choice to the console.
     /// </summary>
     /// <param name="choice">The choice whose follow-up action should be rendered.</param>
-    public static void RenderChoiceAction(Choice choice)
+    public void RenderChoiceAction(Choice choice)
     {
         foreach (string line in choice.WhenChosen)
         {

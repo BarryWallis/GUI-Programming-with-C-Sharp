@@ -38,18 +38,18 @@ public class Adventure
     /// Runs the adventure by rendering the current story node and processing user-selected choices until the story ends.
     /// </summary>
     /// <param name="renderer">The renderer used to display the adventure content.</param>
-    public void Run(SpectreConsoleAdventureRenderer renderer)
+    public void Run(IAdventureRenderer renderer)
     {
         while (CurrentNode is not null)
         {
-            SpectreConsoleAdventureRenderer.Render(CurrentNode);
+            renderer.Render(CurrentNode);
             if (CurrentNode.Choices.Length == 0)
             {
                 CurrentNode = null;
             }
             else
             {
-                Choice choice = SpectreConsoleAdventureRenderer.GetChoice(CurrentNode);
+                Choice choice = renderer.GetChoice(CurrentNode);
                 choice.Execute(this, renderer);
             }
         }
