@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Spectre.Console;
-
-namespace ConsoleAppAdventureGame;
+﻿namespace ConsoleAppAdventureGame;
 
 /// <summary>
 /// Represents the current state of an interactive story adventure.

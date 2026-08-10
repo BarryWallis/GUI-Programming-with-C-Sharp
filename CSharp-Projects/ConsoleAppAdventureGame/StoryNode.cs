@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ConsoleAppAdventureGame;
+﻿namespace ConsoleAppAdventureGame;
 
 /// <summary>
 /// Represents a single node in the adventure story graph.

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Spectre.Console;
+﻿using Spectre.Console;
 
 namespace ConsoleAppAdventureGame;
 
