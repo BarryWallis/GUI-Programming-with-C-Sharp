@@ -5,6 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ConsoleAppAdventureGame\ConsoleAppAdventureGame.csproj" />
+    <ProjectReference Include="..\StoryManager\StoryManager.csproj" />
   </ItemGroup>
 
 </Project>

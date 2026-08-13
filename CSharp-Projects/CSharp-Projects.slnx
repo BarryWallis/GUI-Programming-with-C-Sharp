@@ -2,5 +2,6 @@
   <Folder Name="/Chapter01/">
     <Project Path="ConsoleAppAdventureGame.Tests/ConsoleAppAdventureGame.Tests.csproj" />
     <Project Path="ConsoleAppAdventureGame/ConsoleAppAdventureGame.csproj" Id="5b3e5a52-3dfa-44aa-bc32-21059dbcb26a" />
+    <Project Path="StoryManager/StoryManager.csproj" Id="64c5eeef-d379-49d8-94cd-29d572dde031" />
   </Folder>
 </Solution>

@@ -19,6 +19,10 @@ public class Adventure
         CurrentNode = _nodes[startNodeId];
     }
 
+    /// <summary>
+    /// Gets the story node currently active in the adventure.
+    /// </summary>
+    /// <value>The active story node, or <see langword="null"/> when the story has ended.</value>
     public StoryNode? CurrentNode { get; internal set; }
 
     /// <summary>

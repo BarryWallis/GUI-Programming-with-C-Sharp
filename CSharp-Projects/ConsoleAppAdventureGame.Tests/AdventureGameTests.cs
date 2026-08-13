@@ -5,8 +5,14 @@ using Spectre.Console.Testing;
 
 namespace ConsoleAppAdventureGame.Tests;
 
+/// <summary>
+/// Verifies the behavior of the story model and renderer implementations.
+/// </summary>
 public class AdventureGameTests
 {
+    /// <summary>
+    /// Verifies that the selected choice renders its outcome and advances the adventure to the next node.
+    /// </summary>
     [Fact]
     public void ChoiceExecute_RendersActionAndAdvancesAdventure()
     {
@@ -34,6 +40,9 @@ public class AdventureGameTests
         Assert.Same(choice, renderer.RenderedActions[0]);
     }
 
+    /// <summary>
+    /// Verifies that a choice without a target node ends the current adventure path.
+    /// </summary>
     [Fact]
     public void ChoiceExecute_WithoutNextNode_ClearsCurrentNode()
     {
@@ -56,6 +65,9 @@ public class AdventureGameTests
         _ = Assert.Single(renderer.RenderedActions);
     }
 
+    /// <summary>
+    /// Verifies that the configured start node and case-insensitive lookup logic are honored.
+    /// </summary>
     [Fact]
     public void AdventureConstructorAndGetNode_UseConfiguredStartNodeAndCaseInsensitiveLookup()
     {
@@ -75,6 +87,9 @@ public class AdventureGameTests
         Assert.Same(otherNode, adventure.GetNode("other"));
     }
 
+    /// <summary>
+    /// Verifies that the adventure continues rendering until the final node is reached.
+    /// </summary>
     [Fact]
     public void AdventureRun_RendersUntilStoryEnds()
     {
@@ -113,6 +128,9 @@ public class AdventureGameTests
         Assert.Equal(2, renderer.RenderedActions.Count);
     }
 
+    /// <summary>
+    /// Verifies that the console renderer writes each node line to the standard output stream.
+    /// </summary>
     [Fact]
     public void ConsoleAdventureRenderer_Render_WritesNodeText()
     {
@@ -138,6 +156,9 @@ public class AdventureGameTests
         }
     }
 
+    /// <summary>
+    /// Verifies that the console renderer returns the selected choice after validating user input.
+    /// </summary>
     [Fact]
     public void ConsoleAdventureRenderer_GetChoice_ReturnsSelectedChoice()
     {
@@ -173,6 +194,9 @@ public class AdventureGameTests
         }
     }
 
+    /// <summary>
+    /// Verifies that the console renderer writes the outcome text for the selected action.
+    /// </summary>
     [Fact]
     public void ConsoleAdventureRenderer_RenderChoiceAction_WritesOutcomeText()
     {
@@ -199,6 +223,9 @@ public class AdventureGameTests
         }
     }
 
+    /// <summary>
+    /// Verifies that the Spectre renderer outputs the story text with the configured console.
+    /// </summary>
     [Fact]
     public void SpectreConsoleAdventureRenderer_Render_WritesNodeText()
     {
@@ -224,6 +251,9 @@ public class AdventureGameTests
         }
     }
 
+    /// <summary>
+    /// Verifies that the Spectre renderer offers a selectable choice list and returns the chosen option.
+    /// </summary>
     [Fact]
     public void SpectreConsoleAdventureRenderer_GetChoice_ReturnsSelectedChoice()
     {
@@ -257,6 +287,9 @@ public class AdventureGameTests
         }
     }
 
+    /// <summary>
+    /// Verifies that the Spectre renderer writes the outcome text associated with the action.
+    /// </summary>
     [Fact]
     public void SpectreConsoleAdventureRenderer_RenderChoiceAction_WritesOutcomeText()
     {
