@@ -1,0 +1,68 @@
+{
+  "start": {
+    "Id": "Start",
+    "Text": [
+      "Your time machine is ready to go.",
+      "Do you dare turn it on?"
+    ],
+    "Choices": [
+      {
+        "Text": "Turn it on.",
+        "WhenChosen": [
+          "You are now [red bold]adrift in space spacesuit[/]."
+        ],
+        "NextNodeId": "Stranded"
+      },
+      {
+        "Text": "Destroy it!",
+        "WhenChosen": [
+          "You [bold yellow]smash it[/] to pieces!"
+        ],
+        "NextNodeId": "Destroy"
+      }
+    ]
+  },
+  "stranded": {
+    "Id": "Stranded",
+    "Text": [
+      "It seems you failed to account for the [yellow italic]Earth being at different points in its orbit[/] over time."
+    ],
+    "Choices": [
+      {
+        "Text": "Put on a space suit.",
+        "WhenChosen": [
+          "You put on a space suit and float in space."
+        ],
+        "NextNodeId": "Floating"
+      },
+      {
+        "Text": "Float unencumbered",
+        "WhenChosen": [
+          "You float unencumbered in space."
+        ],
+        "NextNodeId": "Suffocated"
+      }
+    ]
+  },
+  "destroy": {
+    "Id": "Destroy",
+    "Text": [
+      "The device collapses, [cyan underline]compressing all of time and space[/] along with it."
+    ],
+    "Choices": []
+  },
+  "floating": {
+    "Id": "Floating",
+    "Text": [
+      "You spend the rest of your short life floating in space."
+    ],
+    "Choices": []
+  },
+  "suffocated": {
+    "Id": "Suffocated",
+    "Text": [
+      "You suffocate and die."
+    ],
+    "Choices": []
+  }
+}

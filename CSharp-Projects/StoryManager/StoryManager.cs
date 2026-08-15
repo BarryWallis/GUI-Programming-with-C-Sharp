@@ -12,52 +12,49 @@ internal class StoryManager
     private readonly Story _story = new();
 
     /// <summary>
-    /// Runs the story manager menu and exits when the user requests to quit.
+    /// Runs the story manager until the user chooses to exit.
     /// </summary>
-    /// <returns><see langword="true"/> when the application should terminate; otherwise, <see langword="false"/>.</returns>
-    internal bool Run()
+    internal void Run()
     {
         AnsiConsole.MarkupLine("[bold yellow]Welcome to the Story Manager![/]");
         AnsiConsole.MarkupLine("This program allows you to load and save stories to storage.");
         AnsiConsole.MarkupLine("You can also view and edit stories in a simple text format.");
-        AnsiConsole.MarkupLine("Press [bold green]Enter[/] to continue or [bold red]Esc[/] to exit.");
-        ConsoleKeyInfo key = Console.ReadKey(intercept: true);
-        if (key.Key == ConsoleKey.Escape)
+
+        while (true)
         {
-            return true; // Exit the program
+            if (EnterStoryManager())
+            {
+                return;
+            }
         }
-
-        // Load or create a story
-        LoadOrCreateStory();
-
-        //// Display the story content
-        //DisplayStory(story);
-        //// Save the story
-        //SaveStory(story);
-        return false; // Continue running
     }
 
     /// <summary>
-    /// Presents the user with a choice to create or load story content.
+    /// Presents the user with a choice to create, load, edit, or exit.
     /// </summary>
-    private void LoadOrCreateStory()
+    /// <returns><see langword="true"/> when the user chooses to exit; otherwise, <see langword="false"/>.</returns>
+    private bool EnterStoryManager()
     {
-        string[] choices = ["Create a new story", "Load a story",];
-        string answer = AnsiConsole.Prompt(
+        string choice = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("[Yellow]What do you want to do?[/]")
-                .AddChoices(choices));
-        if (answer == choices[0])
+                .AddChoices("Create a new story", "Load a story", "Edit the story", "Exit"));
+
+        switch (choice)
         {
-            _story.Create();
-        }
-        else if (answer == choices[1])
-        {
-            _story.Load();
-        }
-        else
-        {
-            throw new UnreachableException();
+            case "Create a new story":
+                _story.Create();
+                return false;
+            case "Load a story":
+                _story.Load();
+                return false;
+            case "Edit the story":
+                _story.Edit();
+                return false;
+            case "Exit":
+                return true;
+            default:
+                throw new UnreachableException();
         }
     }
 }

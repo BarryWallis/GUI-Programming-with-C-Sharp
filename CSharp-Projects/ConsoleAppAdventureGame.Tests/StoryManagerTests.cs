@@ -83,4 +83,67 @@ public class StoryManagerTests
             AnsiConsole.Console = AnsiConsole.Create(new AnsiConsoleSettings());
         }
     }
+
+    /// <summary>
+    /// Verifies that selecting Exit ends the manager run and shows the welcome message once.
+    /// </summary>
+    [Fact]
+    public void StoryManager_Run_WithImmediateExit_ShowsWelcomeOnce()
+    {
+        TestConsole console = new();
+        _ = console.Interactive();
+        console.Input.PushKey(ConsoleKey.DownArrow);
+        console.Input.PushKey(ConsoleKey.DownArrow);
+        console.Input.PushKey(ConsoleKey.DownArrow);
+        console.Input.PushKey(ConsoleKey.Enter);
+        AnsiConsole.Console = console;
+
+        try
+        {
+            StoryManager storyManager = new();
+            storyManager.Run();
+
+            Assert.Equal(1, console.Output.Split("Welcome to the Story Manager!").Length - 1);
+        }
+        finally
+        {
+            AnsiConsole.Console = AnsiConsole.Create(new AnsiConsoleSettings());
+        }
+    }
+
+    /// <summary>
+    /// Verifies that the menu loops for another action without repeating the welcome message.
+    /// </summary>
+    [Fact]
+    public void StoryManager_Run_AfterAction_ReturnsToMenuWithoutRepeatingWelcome()
+    {
+        TestConsole console = new();
+        _ = console.Interactive();
+
+        // Select "Load a story"
+        console.Input.PushKey(ConsoleKey.DownArrow);
+        console.Input.PushKey(ConsoleKey.Enter);
+        console.Input.PushTextWithEnter("missing.json");
+
+        // Select "Exit" after returning to the menu.
+        console.Input.PushKey(ConsoleKey.DownArrow);
+        console.Input.PushKey(ConsoleKey.DownArrow);
+        console.Input.PushKey(ConsoleKey.DownArrow);
+        console.Input.PushKey(ConsoleKey.Enter);
+
+        AnsiConsole.Console = console;
+
+        try
+        {
+            StoryManager storyManager = new();
+            storyManager.Run();
+
+            Assert.Equal(1, console.Output.Split("Welcome to the Story Manager!").Length - 1);
+            Assert.True(console.Output.Split("What do you want to do?").Length - 1 >= 2);
+        }
+        finally
+        {
+            AnsiConsole.Console = AnsiConsole.Create(new AnsiConsoleSettings());
+        }
+    }
 }
