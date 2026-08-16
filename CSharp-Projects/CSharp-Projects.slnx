@@ -1,7 +1,12 @@
 <Solution>
   <Folder Name="/Chapter01/">
-    <Project Path="ConsoleAppAdventureGame.Tests/ConsoleAppAdventureGame.Tests.csproj" />
-    <Project Path="ConsoleAppAdventureGame/ConsoleAppAdventureGame.csproj" Id="5b3e5a52-3dfa-44aa-bc32-21059dbcb26a" />
-    <Project Path="StoryManager/StoryManager.csproj" Id="64c5eeef-d379-49d8-94cd-29d572dde031" />
+    <Project Path="../../../../../source/repos/CSharp-Projects/ConsoleAppAdventureGame.Tests/ConsoleAppAdventureGame.Tests.csproj" />
+    <Project Path="../../../../../source/repos/CSharp-Projects/ConsoleAppAdventureGame/ConsoleAppAdventureGame.csproj" Id="5b3e5a52-3dfa-44aa-bc32-21059dbcb26a" />
+    <Project Path="../../../../../source/repos/CSharp-Projects/StoryManager/StoryManager.csproj" Id="64c5eeef-d379-49d8-94cd-29d572dde031" />
+  </Folder>
+  <Folder Name="/Chapter02/">
+    <Project Path="EnigmaSimulator.Domain/EnigmaSimulator.Domain.csproj" />
+    <Project Path="EnigmaSimulator.Tests/EnigmaSimulator.Tests.csproj" />
+    <Project Path="EnigmaSimulator/EnigmaSimulator.csproj" />
   </Folder>
 </Solution>
