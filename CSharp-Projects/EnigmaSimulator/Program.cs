@@ -21,10 +21,16 @@ try
     ); 
     CommandApp app = new(new MyTypeRegistrar(services));
     app.Configure(static config
-                    => config.AddCommand<InteractiveEnigmaCommand>("interactive")
-                             .WithAlias("i")
-                             .WithDescription("Encrypts keystrokes as you type them using Enigma.")
-                 );
+                    =>
+    {
+        _ = config.AddCommand<InteractiveEnigmaCommand>("interactive")
+                                     .WithAlias("i")
+                                     .WithDescription("Encrypts keystrokes as you type them using Enigma.");
+        _ = config.AddCommand<EncodeCommand>("encode")
+                                     .WithAlias("e")
+                                     .WithDescription("Encodes a message using the Enigma machine and displays the output.")
+                                     .WithExample("encode hello");
+    });
     return app.Run(args);
 }
 catch (Exception ex)
