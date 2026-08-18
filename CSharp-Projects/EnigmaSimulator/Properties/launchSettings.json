@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EnigmaSimulator": {
+      "commandName": "Project",
+      "commandLineArgs": "interactive"
+    }
+  }
+}
