@@ -1,8 +1,7 @@
 {
   "profiles": {
     "EnigmaSimulator": {
-      "commandName": "Project",
-      "commandLineArgs": "encode hello"
+      "commandName": "Project"
     }
   }
 }

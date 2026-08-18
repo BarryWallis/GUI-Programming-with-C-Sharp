@@ -18,6 +18,9 @@ public class InteractiveEnigmaCommand(EnigmaMachine enigma) : Command
     /// <inheritdoc/>
     protected override int Execute(CommandContext context, CancellationToken cancellationToken)
     {
+        AnsiConsole.Write(new FigletText("Enigma").Color(Color.Green));
+        AnsiConsole.WriteLine();
+
         AnsiConsole.MarkupLine("Enigma will encode until you press [cyan]enter[/].");
         AnsiConsole.WriteLine();
         char output;

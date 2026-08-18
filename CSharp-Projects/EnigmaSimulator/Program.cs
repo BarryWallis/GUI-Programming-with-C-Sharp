@@ -9,9 +9,6 @@ using Spectre.Console.Cli;
 
 try
 {
-    AnsiConsole.Write(new FigletText("Enigma").Color(Color.Green));
-    AnsiConsole.WriteLine();
-
     ServiceCollection services = new();
     _ = services.AddScoped<EnigmaMachine>(static _ => new EnigmaMachine(new Plugboard(),
                                                                         new Rotor(RotorSets.Enigma3),
@@ -30,6 +27,10 @@ try
                                      .WithAlias("e")
                                      .WithDescription("Encodes a message using the Enigma machine and displays the output.")
                                      .WithExample("encode hello");
+        _ = config.AddCommand<EncodeFileCommand>("encode-file")
+                                     .WithAlias("ef")
+                                     .WithDescription("Encodes a file using the Enigma machine and displays the output.")
+                                     .WithExample("encode-file input.txt");
     });
     return app.Run(args);
 }
