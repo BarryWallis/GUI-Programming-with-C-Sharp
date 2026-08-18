@@ -1,10 +1,17 @@
 ﻿namespace EnigmaSimulator.Domain;
 
+/// <summary>
+/// Encodes uppercase letters using forward and reverse mappings.
+/// </summary>
 internal class BiDirectionalCharEncoder
 {
     private readonly Dictionary<char, char> _mappings = [];
     private readonly Dictionary<char, char> _reverseMappings = [];
 
+    /// <summary>
+    /// Initializes a new encoder from a 26-letter mapping.
+    /// </summary>
+    /// <param name="mapping">The mapping to use for forward encoding.</param>
     public BiDirectionalCharEncoder(string mapping)
     {
         if (mapping.Length != 26 && !mapping.All(c => c is (>= 'A' and <= 'Z') or (>= 'a' and <= 'z')))
@@ -21,13 +28,20 @@ internal class BiDirectionalCharEncoder
             _reverseMappings.Add(output, input);
         }
 
-        if (_mappings.Count != _reverseMappings.Count 
+        if (_mappings.Count != _reverseMappings.Count
             || !_mappings.All(kvp => _reverseMappings.TryGetValue(kvp.Value, out char reverse) && reverse == kvp.Key))
         {
             throw new InvalidOperationException("Internal invariant failed: mapping must be a valid bijection.");
         }
     }
 
+    /// <summary>
+    /// Encodes a character using the requested direction and rotor offset.
+    /// </summary>
+    /// <param name="input">The uppercase character to encode.</param>
+    /// <param name="isForward">A value indicating whether the signal is moving forward through the chain.</param>
+    /// <param name="offset">The rotor offset, from 0 to 25.</param>
+    /// <returns>The encoded character.</returns>
     internal char Encode(char input, bool isForward, int offset = 0)
     {
         const int numLetters = 26;

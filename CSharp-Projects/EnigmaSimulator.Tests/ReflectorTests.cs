@@ -4,8 +4,14 @@ using Shouldly;
 
 namespace EnigmaSimulator.Tests;
 
+/// <summary>
+/// Verifies reflector mappings and symmetry.
+/// </summary>
 public class ReflectorTests
 {
+    /// <summary>
+    /// Verifies the reflector output for a few known mappings.
+    /// </summary>
     [Theory]
     [InlineData('A', 'Y')]
     [InlineData('J', 'X')]
@@ -22,6 +28,9 @@ public class ReflectorTests
         output.ShouldBe(expected);
     }
 
+    /// <summary>
+    /// Verifies that every reflector preset is its own inverse.
+    /// </summary>
     [Theory]
     [InlineData(ReflectorSets.ReflectorA)]
     [InlineData(ReflectorSets.ReflectorB)]
