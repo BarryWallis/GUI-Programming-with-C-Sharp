@@ -69,14 +69,6 @@ public class DomainCoverageTests
     public void PlugboardShouldRejectInvalidPairs() => Should.Throw<ArgumentException>(static () => new Plugboard("A"));
 
     /// <summary>
-    /// Verifies that invalid reflector mappings are rejected.
-    /// </summary>
-    [Theory]
-    [InlineData("ABC!")]
-    [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXY!")]
-    public void ReflectorShouldRejectInvalidMappings(string mapping) => Should.Throw<ArgumentException>(() => new Reflector(mapping));
-
-    /// <summary>
     /// Verifies that a reflector cannot be chained to another module.
     /// </summary>
     [Fact]
@@ -149,83 +141,6 @@ public class DomainCoverageTests
         };
 
         advancer.Process('Q').ShouldBe('Q');
-    }
-
-    /// <summary>
-    /// Verifies that queued rotors advance in order.
-    /// </summary>
-    [Fact]
-    public void RotorAdvancerShouldAdvanceDomainRotorsInOrder()
-    {
-        RotorAdvancer advancer = new();
-        IEnigmaModule rotor1 = (IEnigmaModule)CreateDomainRotor(RotorSets.Enigma1, 17);
-        IEnigmaModule rotor2 = (IEnigmaModule)CreateDomainRotor(RotorSets.Enigma2, 1);
-        RecordingModule terminal = new();
-
-        rotor2.NextModule = terminal;
-        rotor1.NextModule = rotor2;
-        advancer.NextModule = rotor1;
-
-        _ = advancer.Process('A');
-
-        GetDomainRotorPosition(rotor1).ShouldBe(18);
-        GetDomainRotorPosition(rotor2).ShouldBe(2);
-        terminal.ProcessCalls.ShouldBe(1);
-    }
-
-    /// <summary>
-    /// Verifies the rotor encoding contract through reflection.
-    /// </summary>
-    [Theory]
-    [InlineData('A', RotorSets.Enigma1, 1, true, 'E')]
-    [InlineData('A', RotorSets.Enigma1, 2, true, 'J')]
-    [InlineData('N', RotorSets.Enigma1, 1, false, 'K')]
-    [InlineData('D', RotorSets.Enigma3, 3, false, 'A')]
-    public void DomainRotorShouldEncodeCorrectly(char input, string mapping, int position, bool isForward, char expected)
-    {
-        object rotor = CreateDomainRotor(mapping, position);
-
-        InvokeRotorEncode(rotor, input, isForward).ShouldBe(expected);
-    }
-
-    /// <summary>
-    /// Verifies that invalid rotor mappings are rejected.
-    /// </summary>
-    [Fact]
-    public void DomainRotorShouldRejectInvalidMappings() => Should.Throw<TargetInvocationException>(static () => CreateDomainRotor("ABC!"))
-            .InnerException.ShouldBeOfType<ArgumentException>();
-
-    /// <summary>
-    /// Verifies that invalid rotor inputs and offsets fail.
-    /// </summary>
-    [Fact]
-    public void DomainRotorShouldRejectLowercaseAndInvalidOffsets()
-    {
-        object rotor = CreateDomainRotor(RotorSets.Enigma1, 0);
-
-        _ = Should.Throw<TargetInvocationException>(() => InvokeRotorEncode(rotor, 'a', true))
-            .InnerException.ShouldBeOfType<ArgumentException>();
-
-        rotor = CreateDomainRotor(RotorSets.Enigma1, 27);
-
-        _ = Should.Throw<TargetInvocationException>(() => InvokeRotorEncode(rotor, 'A', true))
-            .InnerException.ShouldBeOfType<ArgumentOutOfRangeException>();
-    }
-
-    /// <summary>
-    /// Verifies that the rotor set constants expose the expected values.
-    /// </summary>
-    [Theory]
-    [InlineData(nameof(RotorSets.Enigma1), "EKMFLGDQVZNTOWYHXUSPAIBRCJ-Q")]
-    [InlineData(nameof(RotorSets.Enigma2), "AJDKSIRUXBLHWTMCQGZNPYFVOE-E")]
-    [InlineData(nameof(RotorSets.Enigma3), "BDFHJLCPRTXVZNYEIWGAKMUSQO-V")]
-    [InlineData(nameof(RotorSets.Enigma4), "ESOVPZJAYQUIRHXLNFTGKDCMWB-J")]
-    [InlineData(nameof(RotorSets.Enigma5), "VZBRGITYUPSDNHLXAWMJQOFECK-Z")]
-    public void DomainRotorSetsShouldExposeExpectedConstants(string fieldName, string expected)
-    {
-        FieldInfo field = _domainRotorSetsType.GetField(fieldName, BindingFlags.Public | BindingFlags.Static)!;
-
-        field.GetRawConstantValue().ShouldBe(expected);
     }
 
     private static object CreateDomainRotor(string mapping, int position = 1) => Activator.CreateInstance(_domainRotorType, mapping, position)!

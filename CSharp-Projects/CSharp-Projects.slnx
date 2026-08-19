@@ -9,4 +9,8 @@
     <Project Path="EnigmaSimulator.Tests/EnigmaSimulator.Tests.csproj" />
     <Project Path="EnigmaSimulator/EnigmaSimulator.csproj" />
   </Folder>
+  <Folder Name="/Chapter03/">
+    <Project Path="ConsoleRolePlayingGame.Overworld.Tests/ConsoleRolePlayingGame.Overworld.Tests.csproj" Id="eb6de8ee-29f0-4ab0-8a72-0ea5b7734da0" />
+    <Project Path="ConsoleRolePlayingGame.Overworld/ConsoleRolePlayingGame.Overworld.csproj" Id="2866a123-1a22-4b72-bcb6-a985e05ca05b" />
+  </Folder>
 </Solution>
