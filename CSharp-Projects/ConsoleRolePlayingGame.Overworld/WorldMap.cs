@@ -25,4 +25,4 @@ public class WorldMap(MapGenerator map)
     public void AddEntity(IMapEntity entity) => _entities.Add(entity);
 
     public void RemoveEntity(IMapEntity entity) => _entities.Remove(entity);
-}
+ }

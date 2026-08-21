@@ -1,3 +1,3 @@
 ﻿namespace ConsoleRolePlayingGame.Overworld;
 
-public record MapCell(TerrainType Terrain, Position Pos);
+public record MapCell(TerrainType Terrain, Position Position);
