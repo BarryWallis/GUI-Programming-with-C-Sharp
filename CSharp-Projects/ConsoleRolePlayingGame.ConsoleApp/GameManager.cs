@@ -79,11 +79,21 @@ public class GameManager
         List<EnemyGroup> enemies = [.. Map.Entities.OfType<EnemyGroup>()];
         foreach (EnemyGroup group in enemies)
         {
-            group.MoveTowards(Party.MapPosition, Map);
-            if (group.MapPosition == Party.MapPosition)
+            // If the party is on difficult terrain, give the enemy an extra move to catch up.
+            for (int i = 0; i < 2; i++)
             {
-                Map.RemoveEntity(group);
-                Party.Health -= 1;
+                group.MoveTowards(Party.MapPosition, Map);
+                if (group.MapPosition == Party.MapPosition)
+                {
+                    Map.RemoveEntity(group);
+                    Party.Health -= 1;
+                }
+
+                if (Map.GetTerrain(Party.MapPosition) is not TerrainType.Mountain
+                    and not TerrainType.DeepWater)
+                {
+                    break;
+                }
             }
         }
 

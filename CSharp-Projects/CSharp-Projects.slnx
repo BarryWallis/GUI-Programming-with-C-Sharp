@@ -11,7 +11,10 @@
   </Folder>
   <Folder Name="/Chapter03/">
     <Project Path="ConsoleRolePlayingGame.ConsoleApp/ConsoleRolePlayingGame.ConsoleApp.csproj" Id="218c6e95-1143-4abc-ba2c-cbcb3fd124ff" />
+    <Project Path="ConsoleRolePlayingGame.ConsoleApp.Tests/ConsoleRolePlayingGame.ConsoleApp.Tests.csproj" Id="b7e0a6c8-9c37-45a1-b0ba-fd9a8a8c7c9d" />
     <Project Path="ConsoleRolePlayingGame.Overworld.Tests/ConsoleRolePlayingGame.Overworld.Tests.csproj" Id="eb6de8ee-29f0-4ab0-8a72-0ea5b7734da0" />
     <Project Path="ConsoleRolePlayingGame.Overworld/ConsoleRolePlayingGame.Overworld.csproj" Id="2866a123-1a22-4b72-bcb6-a985e05ca05b" />
   </Folder>
 </Solution>
+
+

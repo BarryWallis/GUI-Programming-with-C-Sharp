@@ -13,6 +13,13 @@ public class WorldMap(MapGenerator map)
     public IEnumerable<IMapEntity> Entities => _entities.AsReadOnly();
 
     /// <summary>
+    /// Returns the <see cref="TerrainType"/> at the specified <paramref name="position"/>. 
+    /// </summary>
+    /// <param name="position">The map coordinate for which to retrieve the terrain type.</param>
+    /// <returns>The <see cref="TerrainType"/> at the specified position.</returns>
+    public TerrainType GetTerrain(Position position) => map.CalculateTerrain(position);
+
+    /// <summary>
     /// Returns a rectangular window of <see cref="MapCell"/> values centered around
     /// <paramref name="topLeft"/>.
     /// </summary>

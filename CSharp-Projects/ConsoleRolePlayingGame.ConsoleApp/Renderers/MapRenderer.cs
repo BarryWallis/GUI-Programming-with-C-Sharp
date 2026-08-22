@@ -41,8 +41,8 @@ public class MapRenderer(GameManager game, int width, int height)
     }
 
     /// <summary>
-    /// Returns the display <see cref="Color"/> for a map cell, prioritising entity colour
-    /// over terrain colour when an entity is present.
+    /// Returns the display <see cref="Color"/> for a map cell, prioritizing entity color
+    /// over terrain color when an entity is present.
     /// </summary>
     /// <param name="entity">The entity occupying the cell, or <c>null</c> if empty.</param>
     /// <param name="terrain">The terrain type of the cell.</param>
