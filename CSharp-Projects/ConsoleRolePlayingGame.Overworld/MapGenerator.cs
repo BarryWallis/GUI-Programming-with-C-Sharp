@@ -2,11 +2,21 @@
 
 namespace ConsoleRolePlayingGame.Overworld;
 
+/// <summary>
+/// Generates terrain for map positions using two independent Perlin noise layers
+/// (height and temperature) to produce varied biomes.
+/// </summary>
 public class MapGenerator
 {
     private readonly PerlinNoiseProvider _heightNoise = new(1234);
     private readonly PerlinNoiseProvider _temperatureNoise = new(5678);
 
+    /// <summary>
+    /// Determines the <see cref="TerrainType"/> at the given map position by sampling
+    /// height and temperature noise values.
+    /// </summary>
+    /// <param name="position">The map position to evaluate.</param>
+    /// <returns>The <see cref="TerrainType"/> that best describes the location.</returns>
     public TerrainType CalculateTerrain(Position position)
     {
         float height = _heightNoise.Generate(position.X, position.Y);

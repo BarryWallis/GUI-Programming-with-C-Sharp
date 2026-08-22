@@ -3,8 +3,17 @@ using Spectre.Console.Rendering;
 
 namespace ConsoleRolePlayingGame.ConsoleApp.Renderers;
 
+/// <summary>
+/// Renders the player party's current stats (HP, MP, and enemies defeated) as a
+/// Specter.Console bar chart inside a named panel.
+/// </summary>
+/// <param name="party">The <see cref="PlayerParty"/> whose stats are displayed.</param>
 public class PartyRenderer(PlayerParty party)
 {
+    /// <summary>
+    /// Builds and returns a panel containing a bar chart of the party's statistics.
+    /// </summary>
+    /// <returns>An <see cref="IRenderable"/> panel showing HP, MP, and enemies defeated.</returns>
     public IRenderable GenerateVisual()
     {
         IRenderable partyMarkdown = new Rows(new Markup("[bold]Hero[/]"),

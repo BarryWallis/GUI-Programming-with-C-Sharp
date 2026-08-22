@@ -2,8 +2,15 @@
 
 namespace ConsoleRolePlayingGame.Overworld.Tests;
 
+/// <summary>
+/// Unit tests for <see cref="MapGenerator"/>.
+/// </summary>
 public class TerrainProviderTests
 {
+    /// <summary>
+    /// Verifies that <see cref="MapGenerator.CalculateTerrain"/> returns the expected
+    /// <see cref="TerrainType"/> for known coordinate/seed combinations.
+    /// </summary>
     [Theory]
     [InlineData(8, 0, TerrainType.Mountain)]
     [InlineData(0, -2, TerrainType.Desert)]

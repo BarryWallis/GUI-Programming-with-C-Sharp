@@ -11,12 +11,19 @@ using Spectre.Console.Rendering;
 
 namespace ConsoleRolePlayingGame.ConsoleApp;
 
+/// <summary>
+/// Renders the overworld screen layout and processes player keyboard input
+/// to drive party movement or game exit.
+/// </summary>
+/// <param name="game">The active <see cref="GameManager"/> instance.</param>
+/// <param name="console">The Specter.Console <see cref="IAnsiConsole"/> used for output and input.</param>
 public class OverworldScreen(GameManager game, IAnsiConsole console)
 {
     private readonly HelpRenderer _helpRenderer = new();
     private readonly MapRenderer _mapRenderer = new(game, Width, Width);
     private readonly PartyRenderer _partyRenderer = new(game.Party);
 
+    /// <summary>The width (and height) in characters of the map viewport.</summary>
     public const int Width = 21;
 
     private readonly Layout _layout = new Layout("Root")
@@ -27,6 +34,11 @@ public class OverworldScreen(GameManager game, IAnsiConsole console)
         .SplitColumns(new Layout("Main").Size(Width * 2),
                       new Layout("Sidebar")));
 
+    /// <summary>
+    /// Builds and returns the full overworld <see cref="IRenderable"/> layout, combining
+    /// the map, party stats, and help text.
+    /// </summary>
+    /// <returns>The composed <see cref="IRenderable"/> ready to write to the console.</returns>
     public IRenderable GenerateVisual()
     {
         _ = _layout["Main"].Update(_mapRenderer.GenerateVisual());
@@ -34,6 +46,10 @@ public class OverworldScreen(GameManager game, IAnsiConsole console)
         return _layout;
     }
 
+    /// <summary>
+    /// Reads a single key press from the console and translates it into a game action
+    /// (movement in a cardinal direction or quitting).
+    /// </summary>
     public void HandlePlayerInput()
     {
         console.Markup("[yellow]>[/] ");

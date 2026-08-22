@@ -6,8 +6,15 @@ using Shouldly;
 
 namespace ConsoleRolePlayingGame.Overworld.Tests;
 
+/// <summary>
+/// Unit tests for <see cref="PerlinNoiseProvider"/>.
+/// </summary>
 public class PerlinNoiseProviderTests
 {
+    /// <summary>
+    /// Verifies that <see cref="PerlinNoiseProvider.Generate"/> returns the same value
+    /// for a given seed and coordinate pair across multiple invocations.
+    /// </summary>
     [Theory]
     [InlineData(1234, 1, 1, 0.8184)]
     [InlineData(1234, 1, -1, 0.8185)]
